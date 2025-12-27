@@ -1,25 +1,26 @@
-NAME		= fixed
+# Now we’re talking
+NAME = ex02
+SRCS = main.cpp Fixed.cpp
+OBJS = $(SRCS:.cpp=.o)
+# Compiler
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
-
-SRCS		= main.cpp Fixed.cpp
-OBJS		= $(SRCS:.cpp=.o)
-
+# Rules
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME):	$(OBJS) 
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	$(RM) $(OBJS)
 
-fclean: clean
-	rm -f $(NAME)
+fclean:	clean
+	$(RM) $(NAME)
 
-re: fclean all
+re:		fclean all
 
 .PHONY: all clean fclean re

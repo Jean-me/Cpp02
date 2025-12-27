@@ -4,7 +4,7 @@ SRCS = main.cpp Fixed.cpp
 OBJS = $(SRCS:.cpp=.o)
 # Compiler
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Rules
 all: $(NAME)
@@ -23,4 +23,4 @@ fclean:	clean
 
 re:		fclean all
 
-.PHONY:	all clean fclea
+.PHONY: all clean fclean re
