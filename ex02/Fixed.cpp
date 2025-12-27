@@ -117,15 +117,15 @@ Fixed Fixed::operator/(const Fixed &other) const // a / b
 // Increment/Decrement operators
 Fixed &Fixed::operator++()
 {
-    this->_fixedPointValue++;
-    return *this;
+    this->_fixedPointValue++; // 前置インクリメン (++a)、固定小数点数の内部値を1増やす。実際の値は 1/256 (≈0.00390625) 増える
+    return *this;             // 前置: Fixed& （参照を返す = 効率的）
 }
 
-Fixed Fixed::operator++(int)
+Fixed Fixed::operator++(int) // 後置～ の古い値を返してから増やす、intは前置と後置を区別するダミー
 {
-    Fixed temp(*this);
-    this->_fixedPointValue++;
-    return temp;
+    Fixed temp(*this);        // 現在の値をコピーして保存
+    this->_fixedPointValue++; // 自分自身を増やす
+    return temp;              // 古い値を返す(後置: Fixed （コピーを返す
 }
 
 Fixed &Fixed::operator--()
@@ -149,7 +149,7 @@ Fixed &Fixed::min(Fixed &a, Fixed &b)
 
 const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
 {
-    return (a < b) ? a : b;
+    return (a < b) ? a : b; // a < b なら a を返し、そうでなければ b を返す
 }
 
 Fixed &Fixed::max(Fixed &a, Fixed &b)
